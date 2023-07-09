@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int main() {
+    FILE *file;
+    char text[1000];
+    
+    
+    file = fopen("metin.txt", "w");
+    
+    if (file == NULL) {
+        printf("Dosya olusturma hatasi.\n");
+        return 1;
+    }
+    
+    printf("Metin dosyasina yazilacak metni girin: ");
+    fgets(text, sizeof(text), stdin);
+    
+    
+    fprintf(file, "%s", text);
+    
+    
+    fclose(file);
+    
+    
+    file = fopen("metin.txt", "r");
+    
+    if (file == NULL) {
+        printf("Dosya acma hatasi.\n");
+        return 1;
+    }
+    
+    printf("\nMetin dosyasindan okunan metin:\n");
+    
+    
+    while (fgets(text, sizeof(text), file) != NULL) {
+        printf("%s", text);
+    }
+    
+    
+    fclose(file);
+    
+    return 0;
+}
